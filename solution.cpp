@@ -16,13 +16,22 @@ using namespace std;
 /*takeaways
   - use DP to achieve O(n)
   - the space complexity is O(n)
+  - scan the array from left to right to build
+    a left product array
+    [1,2,3,4] => [1,1,1x2,1x2x3]
+  - we then produce the right product array
+    [1,2,3,4] => [2x3x4,3x4,4,1]
+  - scan the array one more time to prodcue
+    the final product
+    [2x3x4,1x3x4,1x2x4,1x2x3]
+
 */
 vector<int> Solution::product(vector<int> &nums)
 {
   int n = nums.size();
-  /* lp[i] will store nums[0]*...nums[i-1] */
+  /* lp[i] will store nums[0]*...*nums[i-1] */
   auto lp = vector<int>(n, 1);
-  /* rp[i] will store nums[i+1]*...nums[n-1] */
+  /* rp[i] will store nums[i+1]*...*nums[n-1] */
   auto rp = vector<int>(n, 1);
 
   auto result = vector<int>(n, 1);
@@ -56,6 +65,9 @@ vector<int> Solution::product2(vector<int> &nums)
   int n = nums.size(), l = 1, r = 1;
   auto result = vector<int>(n, 1);
 
+  /*two pointers
+    - i and n-1-i
+  */
   for (auto i = 0; i < n; i++)
   {
     /* start from the beginning
