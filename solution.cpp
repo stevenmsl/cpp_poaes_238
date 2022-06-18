@@ -15,10 +15,13 @@ using namespace std;
 
 /*takeaways
   - use DP to achieve O(n)
+    - scan the array three times
   - the space complexity is O(n)
   - scan the array from left to right to build
     a left product array
-    [1,2,3,4] => [1,1,1x2,1x2x3]
+    - [1,2,3,4] => [1,1,1x2,1x2x3]
+    - lp[i] is the product of nums[0] * ...nums[i-1]
+    - lp[i] = lp[i-1] * nums[i-1]
   - we then produce the right product array
     [1,2,3,4] => [2x3x4,3x4,4,1]
   - scan the array one more time to prodcue
